@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "synthesis-tracker": {
+      "command": "python",
+      "args": ["synthesis-tracker/server.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  },
+  "description": "Family AI Extensions MCP servers for Open WebUI integration",
+  "version": "1.0.0"
+}
