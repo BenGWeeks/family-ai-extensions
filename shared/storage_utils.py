@@ -16,8 +16,15 @@ class StudyProgressDB:
     """SQLite database for tracking study progress."""
     
     def __init__(self, db_path: str):
-        self.db_path = Path(db_path)
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        if db_path == ":memory:":
+            # For testing, use a temporary file instead of memory
+            import tempfile
+            self.db_path = tempfile.mktemp(suffix='.db')
+            self._is_temp = True
+        else:
+            self.db_path = Path(db_path)
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
+            self._is_temp = False
         self._init_database()
     
     def _init_database(self):
